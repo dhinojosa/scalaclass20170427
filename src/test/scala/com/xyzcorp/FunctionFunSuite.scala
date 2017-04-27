@@ -4,6 +4,8 @@ import java.time.{LocalDate, LocalDateTime}
 
 import org.scalatest.{FunSuite, Matchers}
 
+import scala.concurrent.Future
+
 class FunctionFunSuite extends FunSuite with Matchers {
    test("What is a function") {
        val f1:Function1[String, Int] = new Function1[String, Int]() {
@@ -147,4 +149,103 @@ class FunctionFunSuite extends FunSuite with Matchers {
       result3 should be (LightSide("Luke, Leia, Han"))
    }
 
+
+   test("Mix of Monads") {
+      val list = List(1,2,3,4)
+      val option = Some(10)
+      val result = list.flatMap(x => option.map(y => x * y))
+      result should be (List(10, 20, 30, 40))
+
+
+      val result2 = for (x <- list; y <- option) yield x * y
+      result2 should be (List(10, 20, 30, 40))
+
+      val cities = List("Sofia, Bulgaria", "Tirana, Albania", "Bucharest, Romania")
+      val token = Some("492384823")
+
+      val result3 = for (x <- cities; y <- token) yield {
+         /*
+             Url url = new URL(s"http://weather-service.com/$x&token=$y")
+             InputStream is = url.openConnection()
+             val temps = List[Int]parse(is)
+             temps
+          */
+      }
+
+
+      val result4 = for (x <- List[Int](); y <- Some(10)) yield x * y
+      result4 should be (List())
+   }
+
+   test("foreach with list") {
+       val list = List(1,2,3)
+       list.foreach(x => println(x))
+
+       //Arrays.asList(1,2,3).stream().foreach(System.out::println)
+
+      list foreach println
+   }
+
+   test("foreach with a future") {
+      import scala.concurrent.ExecutionContext.Implicits.global
+
+      val future:Future[Int] = Future {
+         println(s"Inside the future ${Thread.currentThread().getName}")
+         Thread.sleep(5000)
+         6 + 12
+      }
+
+      println(s"Before the map ${Thread.currentThread().getName}")
+
+      val step2:Future[String] = future.map { x =>
+         println(s"Inside the map ${Thread.currentThread().getName}"); "" + x + 50
+      }
+
+      step2.foreach(x => println(x))
+
+      println(s"After the map ${Thread.currentThread().getName}")
+
+      Thread.sleep(5050)
+   }
+
+   test("foreach with a future (concise)") {
+      import scala.concurrent.ExecutionContext.Implicits.global
+
+      val future:Future[Int] = Future {
+         println(s"Inside the future ${Thread.currentThread().getName}")
+         Thread.sleep(5000)
+         6 + 12
+      }
+
+      future.map(1+).foreach(println)
+      Thread.sleep(5070)
+   }
+
+   test("future monad") {
+      import scala.concurrent.ExecutionContext.Implicits.global
+
+      val future:Future[Int] = Future {
+         println(s"Inside the future ${Thread.currentThread().getName}")
+         Thread.sleep(1500)
+         6 + 12
+      }
+
+      val future2:Future[Int] = Future {
+         println(s"Inside the future ${Thread.currentThread().getName}")
+         Thread.sleep(4000)
+         50 * 10
+      }
+
+      val finalResult:Future[Int] = for (x <- future;
+                                         y <- future2) yield x + y
+
+      finalResult.foreach(println)
+
+      Thread.sleep(4050)
+   }
+
+   test("byName parameter") {pending}
+   test("zip") {pending}
+   test("reduce") {pending}
+   test("foldLeft") {pending}
 }
