@@ -1,0 +1,72 @@
+About Scala
+   What are the positives of Scala ✓
+   What are the negatives of Scala ✓
+   Running Script in Scala  ✓
+   Compiling a Class in Scala ✓
+   Running the REPL ✓
+   Setting up SBT ✓ 
+   IDE Setup and Configuration ✓
+Scala Basics
+   Primitive and simple types ✓
+   val and var ✓
+   Control structures (if-else-if-else, for, while, do-while) ✓
+   val and var in classes, and access modifiers [private[this]] ✓
+   Lazy Values ✓
+   String formatting and interpolation ✓
+Methods
+   Basic Methods ✓
+   Unit and Conventions ✓
+   Magical apply ✓
+   Magical right-associative colons ✓
+   Infix Method Notation ✓
+Classes and Types
+   Scala Hierarchy ✓
+   Nulls, Nothing, and Units ✓
+   Constructors ✓
+   Case Classes ✓
+   Abstract Classes ✓
+   Traits ✓
+   Sealing ✓
+Objects
+   Singletons ✓
+   Companion Objects ✓
+   Options ✓
+   Tuples ✓
+   Collections ✓
+   Lists ✓
+   Buffers 1/2
+   Sets
+   Maps
+   Arrays
+   Streams
+   Vectors and Tries
+   Ranges ✓
+Functions
+   Functions (zip, reduce, foldLeft) ✓
+   Higher Order Functions ✓
+   Convert a Method a Function ✓
+   Partial Functions 
+   Partially Applied Functions ✓
+   Currying ✓
+   Recursion ✓
+   By-Name Parameters ✓
+Monads and For-Comprehensions ✓
+Pattern matching
+   Matching Lists, Options, Tuples, and Regular Expressions ✓
+   Pattern Guards
+   Case Class and Sealed Case Class Matching ✓
+   Custom Pattern Matching with Extractors ✓
+Implicits and Type Classes
+   Implicit Conversions ✓
+   Implicit Parameters ✓
+   Type Classes
+   View Bounds
+   Scala and Java Interoperability ✓
+Advanced Composition and Inheritance
+   Parameterized Types and Abstract types 1/2
+   Self types
+   Path Dependent Types
+   Type Safe Duck Typing with Structural types
+   Covariance, Invariance, Contravariance
+   TypeTags and Reflections
+
